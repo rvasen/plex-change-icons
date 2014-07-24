@@ -21,7 +21,6 @@ class MainPage(QWidget):
 		selectLibraryLabel.setAlignment(Qt.AlignTop | Qt.AlignLeft)
 		self.selectLibraryDropdown = QComboBox()
 		self.selectLibraryDropdown.addItems(self.findLibraries(True))
-
 		#Create button for selecting icon for file; calls function to pull up a file select dialog
 		selectIconButton = QPushButton("Select File for Icon")
 		selectIconButton.clicked.connect(self.selectIconFile)
@@ -124,8 +123,8 @@ class MainPage(QWidget):
 		locateButton = msgBox.addButton("Locate", QMessageBox.YesRole)
 		msgBox.exec_()
 		if(msgBox.clickedButton() == closeButton):
-			#I'm not sure why but the red x in the corner is greyed out; this should suffice although it returns a bunch of errors since it continues with the MainPage.__init__ call and self.selectLibraryDropdown.addItems() then takse a NoneType argument
-			self.close()
+			#I'm not sure why but the red x in the corner is greyed out; this should suffice 
+			sys.exit()
 		elif(msgBox.clickedButton() == helpButton):
 			QDesktopServices.openUrl(QUrl("http://raspberrypihtpc.wordpress.com/how-to/how-to-plex-media-server-change-the-section-icons/"))
 			self.noDatabaseAlert()

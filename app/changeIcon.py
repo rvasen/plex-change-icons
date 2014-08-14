@@ -91,7 +91,7 @@ class MainPage(QWidget):
 				if(platform.system() == "Windows"):
 					if(platform.release() == ("XP" or "Server 2003" or "Home Server")):
 						self.dbFile = "C:\\Documents and Settings\\%s\\Local Settings\\Application Data\\Plex Media Server\\Plug-In Support\\Databases\\com.plexapp.plugins.library.db" % user
-					elif(platform.release() == "7"):
+					elif(platform.release() == ("7" or "Server 2008")):
 						localAppData = os.environ['LOCALAPPDATA']
 						self.dbFile = "%s\\Plex Media Server\\Plug-In Support\\Databases\\com.plexapp.plugins.library.db" % localAppData
 			#This variable is used later by createBackup and retrieveBackup

@@ -91,7 +91,7 @@ class MainPage(QWidget):
 				if(platform.system() == "Windows"):
 					if(platform.release() == ("XP" or "Server 2003" or "Home Server")):
 						self.dbFile = "C:\\Documents and Settings\\%s\\Local Settings\\Application Data\\Plex Media Server\\Plug-In Support\\Databases\\com.plexapp.plugins.library.db" % user
-					elif(platform.release() == ("7" or "Server 2008")):
+					elif(platform.release() == ("7" or isVista())):
 						localAppData = os.environ['LOCALAPPDATA']
 						self.dbFile = "%s\\Plex Media Server\\Plug-In Support\\Databases\\com.plexapp.plugins.library.db" % localAppData
 			#This variable is used later by createBackup and retrieveBackup
@@ -111,6 +111,13 @@ class MainPage(QWidget):
 		except sqlite3.OperationalError:
 			#This will ultimately return an array of the names of the library sections from the database the user defines; see lines 144-145
 			return self.noDatabaseAlert()
+
+
+	def isVista():
+		if getattr(sys, "getwindowsversion", None) is not None:
+			return sys.getwindowsversion()[0] == 6
+		else:
+				return False
 
 	def noDatabaseAlert(self):
 		msgBox = QMessageBox()
